@@ -29,7 +29,7 @@ class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Ada
         holder.numero.text = "tel: "+data[position].numero
         holder.specialite.text = data[position].specialite
 
-        Glide.with(context).load(url+ "/images/" +data[position].photo).into(holder.image)
+        Glide.with(context).load(url+ "images/" +data[position].photo).into(holder.image)
         holder.numero.setOnClickListener() {
 
             val uri = Uri.parse("tel:" +data[position].numero)
@@ -40,8 +40,9 @@ class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Ada
         holder.map.setOnClickListener(){
             val latitude = data[position].latitude
             val longitude = data[position].longitude
-            val geoLocation = Uri.parse("geo:$latitude,$longitude")
+            val geoLocation = Uri.parse("google.navigation:q=$latitude,$longitude")
             val intent = Intent(Intent.ACTION_VIEW,geoLocation)
+            intent.setPackage("com.google.android.apps.maps");
             context.startActivity(intent)
         }
 

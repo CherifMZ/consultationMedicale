@@ -1,3 +1,3 @@
 package com.example.consultation.constant
 
-const val url:String="https://80c9ab8d61be.ngrok.io/";
+const val url:String="https://e5fa986602ba.ngrok.io/";
