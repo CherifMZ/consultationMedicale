@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/authentificationFragment">
+
+    <fragment
+        android:id="@+id/authentificationFragment"
+        android:name="com.example.consultation.ui.view.activity.fragments.AuthentificationFragment"
+        android:label="fragment_authentification"
+        tools:layout="@layout/fragment_authentification" >
+        <action
+            android:id="@+id/action_authentificationFragment_to_medecinAuthFragment"
+            app:destination="@id/medecinAuthFragment" />
+        <action
+            android:id="@+id/action_authentificationFragment_to_patientAuthFragment"
+            app:destination="@id/patientAuthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medecinAuthFragment"
+        android:name="com.example.consultation.ui.view.activity.fragments.MedecinAuthFragment"
+        android:label="fragment_medecin_auth"
+        tools:layout="@layout/fragment_medecin_auth" />
+    <fragment
+        android:id="@+id/patientAuthFragment"
+        android:name="com.example.consultation.ui.view.activity.fragments.PatientAuthFragment"
+        android:label="fragment_patient_auth"
+        tools:layout="@layout/fragment_patient_auth" />
+</navigation>

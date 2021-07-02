@@ -1,4 +1,4 @@
-package com.example.consultation.data.model
+package com.example.consultation.data.data.models
 import java.io.Serializable
 import java.util.*
 
