@@ -1,6 +1,11 @@
 package com.example.consultation.data.model
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.util.*
+
+@Entity(tableName = "medecins")
 
 data class Medecin(val idMedecin: Int,
                    val photo:String,
@@ -15,4 +20,9 @@ data class Medecin(val idMedecin: Int,
                    val birthDate:Date,
                    val gender:String,
                    val experience:Int
-):Serializable
+):Serializable{
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "medecin_id")
+    var medecinID:Int?=null
+}
