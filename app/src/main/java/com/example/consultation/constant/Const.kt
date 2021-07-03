@@ -1,3 +1,5 @@
 package com.example.consultation.constant
 
-const val url:String="https://aee92db739f0.ngrok.io/";
+
+const val url:String="https://f0d12a2a598e.ngrok.io/"
+val sharedPrefFile: String = "kotlinsharedpreference"

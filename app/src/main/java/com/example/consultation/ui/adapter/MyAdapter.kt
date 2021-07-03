@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.consultation.R
 import com.example.consultation.constant.url
-import com.example.consultation.data.model.Medecin
 import com.example.consultation.ui.view.activity.ProfilMedecinActivity
+import com.example.consultation.data.data.models.Medecin
 
 class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

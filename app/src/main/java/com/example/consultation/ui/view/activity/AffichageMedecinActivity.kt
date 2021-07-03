@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.consultation.R
-import com.example.consultation.data.model.Medecin
-import com.example.consultation.retrofit.RetrofitService
+import com.example.consultation.data.data.models.Medecin
+import com.example.consultation.data.data.api.RetrofitService
 import com.example.consultation.ui.adapter.MyAdapter
 import kotlinx.android.synthetic.main.activity_affichage_medecin.*
 import retrofit2.Call
