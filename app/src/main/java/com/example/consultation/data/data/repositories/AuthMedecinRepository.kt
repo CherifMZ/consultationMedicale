@@ -48,7 +48,6 @@ class AuthMedecinRepository {
                                                 }
 
                                                 Toast.makeText(context, "Accès autorisé", Toast.LENGTH_SHORT).show()
-                                                Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
                                                 val myIntent = Intent(context, MedecinActivity::class.java)
 
                                                 context.startActivity(myIntent)
