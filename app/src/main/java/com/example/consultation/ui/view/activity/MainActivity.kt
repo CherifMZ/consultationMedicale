@@ -11,8 +11,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getMedecins.setOnClickListener {
-            val intent = Intent(this,AffichageMedecinActivity::class.java)
-            this.startActivity( intent) }
     }
 }

@@ -43,7 +43,6 @@ class AuthPatientRepository {
                         }
                         Toast.makeText(context, "Accès autorisé", Toast.LENGTH_SHORT).show()
                         val myIntent = Intent(context, AffichageMedecinActivity::class.java)
-
                         context.startActivity(myIntent)
                         (context as Activity).finish()
                     }

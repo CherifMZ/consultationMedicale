@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Consultation</string>
+    <string name="demandeConseil">Demande Conseil</string>
+    <string name="rendez_vous">Rendez vous</string>
+    <string name="specialite">Spécialité: </string>
+    <string name="numero">Numero: </string>
+    <string name="experience">Experience(ans):  </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

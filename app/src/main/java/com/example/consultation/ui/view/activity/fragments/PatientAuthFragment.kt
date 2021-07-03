@@ -12,6 +12,7 @@ import com.example.consultation.R
 import com.example.consultation.constant.sharedPrefFile
 import com.example.consultation.data.data.repositories.AuthMedecinRepository
 import com.example.consultation.data.data.repositories.AuthPatientRepository
+import com.example.consultation.ui.view.activity.AffichageMedecinActivity
 import com.example.consultation.ui.view.activity.MedecinActivity
 import kotlinx.android.synthetic.main.fragment_patient_auth.*
 
@@ -46,7 +47,7 @@ class PatientAuthFragment : Fragment() {
         val con = sharedPref?.getBoolean("connected", false)
 
         if(con == true){
-            val intent= Intent(requireContext(), MedecinActivity::class.java)
+            val intent= Intent(requireContext(), AffichageMedecinActivity::class.java)
             startActivity(intent)
             (context as Activity).finish()
         }

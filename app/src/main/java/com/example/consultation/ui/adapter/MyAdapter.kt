@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.consultation.R
 import com.example.consultation.constant.url
+import com.example.consultation.ui.view.activity.ProfilMedecinActivity
 import com.example.consultation.data.data.models.Medecin
 
 class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Adapter<MyViewHolder>() {
@@ -46,10 +48,18 @@ class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Ada
             context.startActivity(intent)
         }
 
-        /*holder.itemView.setOnClickListener(){
-            var bundle = bundleOf("photo" to data[position].photo,"idMedecin" to data[position].id,"nom" to data[position].nom, "prenom" to data[position].prenom,"num" to data[position].numero,"specialite" to data[position].specialite, "exp" to data[position].experience,"url" to data[position].url_fb)
-            it?.findNavController()?.navigate(R.id.action_mainFragment_to_detailFragment,bundle)
-        }*/
+        holder.itemView.setOnClickListener(){
+            val intent = Intent(context,ProfilMedecinActivity::class.java)
+            intent.putExtra("photo",data[position].photo)
+            intent.putExtra("nom",data[position].nom)
+            intent.putExtra("prenom",data[position].prenom)
+            intent.putExtra("numero",data[position].numero)
+            intent.putExtra("specialite",data[position].specialite)
+            intent.putExtra("experience",data[position].experience)
+
+
+            context.startActivity(intent)
+        }
     }
 }
 
