@@ -1,6 +1,7 @@
 package com.example.consultation.ui.view.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.consultation.R
+import com.example.consultation.constant.sharedPrefFile
+import com.example.consultation.data.data.repositories.AddRdvRepository
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -18,6 +21,10 @@ import java.util.*
 
 
 class PriseRdvActivity : AppCompatActivity() {
+    private var time : String =""
+    private var date : String =""
+    private var heureEstimee : String =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prise_rdv)
@@ -27,6 +34,17 @@ class PriseRdvActivity : AppCompatActivity() {
             val hour = calendar[Calendar.HOUR_OF_DAY]
             val min = calendar[Calendar.MINUTE]
             val sec = calendar[Calendar.SECOND]
+
+            time = hour.toString()+":"+min.toShort()+":"+sec.toString()
+
+            var minEstime = min+15
+            if (minEstime==60) {
+                val hourEstime = hour+1
+                minEstime =0
+                heureEstimee = hourEstime.toString()+":"+minEstime.toShort()+":"+sec.toString()
+            } else {
+                heureEstimee = hour.toString()+":"+minEstime.toShort()+":"+sec.toString()
+            }
 
             heureChoisie.append("Heure choisie : "+Pico.formatTime(calendar)+"\n")
         }
@@ -38,6 +56,7 @@ class PriseRdvActivity : AppCompatActivity() {
             val month = calendar[Calendar.MONTH]
             val day = calendar[Calendar.DAY_OF_MONTH]
 
+            date = year.toString()+"-"+month.toShort()+"-"+day.toString()
             heureChoisie.append("Date choisie : "+Pico.formatDate(calendar)+"\n")
         }
         pico.show()
@@ -45,9 +64,20 @@ class PriseRdvActivity : AppCompatActivity() {
         val multiFormatWriter = MultiFormatWriter()
 
         buttonRDV.setOnClickListener {
+
+            val sharedPref = getSharedPreferences(
+                sharedPrefFile, Context.MODE_PRIVATE
+            )
+
+            val add = AddRdvRepository.Companion
+            val idP = sharedPref.getString("patientID", "default")
+            add.addRDV(this, 1, idP?.toInt()!!,
+                date, time, heureEstimee)
+
+            sharedPref.getInt("idRDV", 0)
             try {
                 val bitMatrix = multiFormatWriter.encode(
-                    "1",
+                    sharedPref.getInt("idRDV", 0).toString(),
                     BarcodeFormat.QR_CODE,
                     500,
                     500
@@ -60,6 +90,20 @@ class PriseRdvActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+        }
+
+        buttonDisconnect2.setOnClickListener {
+            val sharedPref = getSharedPreferences(
+                    sharedPrefFile, Context.MODE_PRIVATE
+            )
+            with(sharedPref.edit()) {
+                this.putBoolean("connected",false)
+                this.apply()
+            }
+
+            val myIntent = Intent(this, AuthentificationActivity::class.java)
+            startActivity(myIntent)
+            finish()
         }
     }
 
@@ -79,50 +123,3 @@ class PriseRdvActivity : AppCompatActivity() {
         return Uri.parse(savedImageURL)
     }
 }
-
-/*
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.view.activity.PriseRdvActivity">
-
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-    <ImageView
-        android:id="@+id/imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
- */

@@ -14,12 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Consultation">
-        <activity android:name=".ui.view.activity.AuthentificationActivity" />
+        <activity android:name=".ui.view.activity.PriseRdvActivity" />
         <activity android:name=".ui.view.activity.MainActivity" />
         <activity android:name=".ui.view.activity.ProfilMedecinActivity"/>
         <activity android:name=".ui.view.activity.MedecinActivity" />
         <activity android:name=".ui.view.activity.AffichageMedecinActivity" />
-        <activity android:name=".ui.view.activity.PriseRdvActivity">
+        <activity android:name=".ui.view.activity.AuthentificationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

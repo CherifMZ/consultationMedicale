@@ -44,9 +44,9 @@ class MedecinAuthFragment : Fragment() {
         val sharedPref = requireContext().getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
-        val con = sharedPref?.getBoolean("connected", false)
+        val connected = sharedPref.getBoolean("connected", false)
 
-        if(con == true){
+        if(connected){
             val intent= Intent(requireContext(), MedecinActivity::class.java)
             startActivity(intent)
             (context as Activity).finish()

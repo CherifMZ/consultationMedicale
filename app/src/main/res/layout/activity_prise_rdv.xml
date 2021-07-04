@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Prendre un rendez vous"
+        android:backgroundTint="#FFCB00"
         app:layout_constraintEnd_toEndOf="@+id/heureChoisie"
         app:layout_constraintStart_toStartOf="@+id/heureChoisie"
         app:layout_constraintTop_toBottomOf="@+id/heureChoisie" />
@@ -73,5 +74,17 @@
         app:layout_constraintEnd_toEndOf="@+id/dateChoisie"
         app:layout_constraintStart_toStartOf="@+id/dateChoisie"
         app:layout_constraintTop_toBottomOf="@+id/dateChoisie" />
+
+    <Button
+        android:id="@+id/buttonDisconnect2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Se déconnecter"
+        android:backgroundTint="#FFCB00"
+        app:layout_constraintEnd_toEndOf="@+id/imageview"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/imageview"
+        app:layout_constraintTop_toBottomOf="@+id/imageview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

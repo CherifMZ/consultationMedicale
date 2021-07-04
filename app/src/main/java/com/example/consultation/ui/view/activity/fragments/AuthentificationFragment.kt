@@ -44,13 +44,13 @@ class AuthentificationFragment : Fragment() {
                 sharedPrefFile, Context.MODE_PRIVATE
         )
 
-        if((sharedPref?.getBoolean("connected", false) == true)
-                && (sharedPref?.getString("role", "default").equals("medecin"))){
+        if((sharedPref.getBoolean("connected", false))
+                && (sharedPref.getString("userRole", "default").equals("medecin"))){
             val intent= Intent(requireContext(), MedecinActivity::class.java)
             startActivity(intent)
             (context as Activity).finish()
-        } else if ((sharedPref?.getBoolean("connected", false) == true)
-                && (sharedPref?.getString("role", "default").equals("patient"))) {
+        } else if ((sharedPref.getBoolean("connected", false))
+                && (sharedPref.getString("userRole", "default").equals("patient"))) {
             val intent= Intent(requireContext(), AffichageMedecinActivity::class.java)
             startActivity(intent)
             (context as Activity).finish()

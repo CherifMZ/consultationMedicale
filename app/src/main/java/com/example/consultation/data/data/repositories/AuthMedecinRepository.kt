@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import com.auth0.android.jwt.JWT
 import com.example.consultation.constant.sharedPrefFile
 import com.example.consultation.data.data.api.RetrofitService
 import com.example.consultation.data.data.models.AuthBody
@@ -38,18 +39,33 @@ class AuthMedecinRepository {
                                                         Toast.LENGTH_SHORT
                                                 ).show()
                                         } else {
-                                                val sharedPref = context.getSharedPreferences(
-                                                        sharedPrefFile, Context.MODE_PRIVATE
-                                                )
-                                                with(sharedPref?.edit()) {
-                                                        this?.putBoolean("connected",true)
-                                                        this?.putString("role","medecin")
-                                                        this?.apply()
+                                                val resp = response.body()
+
+                                                if (resp != null) {
+                                                        val userToken = resp.token
+
+                                                        val jwt = JWT(userToken)
+                                                        val claimID = jwt.getClaim("id") //claimID to have the connected user's ID
+                                                        val claimRole = jwt.getClaim("role")
+
+                                                        val sharedPref = context.getSharedPreferences(
+                                                                sharedPrefFile, Context.MODE_PRIVATE
+                                                        )
+                                                        with(sharedPref?.edit()) {
+                                                                this?.putBoolean("connected",true)
+                                                                this?.putString("medecinID",
+                                                                        claimID.asString())
+                                                                this?.putString("userRole",
+                                                                        claimRole.asString())
+                                                                this?.putString("token", userToken)
+                                                                this?.apply()
+                                                        }
                                                 }
 
-                                                Toast.makeText(context, "Accès autorisé", Toast.LENGTH_SHORT).show()
-                                                val myIntent = Intent(context, MedecinActivity::class.java)
-
+                                                Toast.makeText(context, "Accès autorisé",
+                                                        Toast.LENGTH_SHORT).show()
+                                                val myIntent = Intent(context,
+                                                        MedecinActivity::class.java)
                                                 context.startActivity(myIntent)
                                                 (context as Activity).finish()
                                         }
