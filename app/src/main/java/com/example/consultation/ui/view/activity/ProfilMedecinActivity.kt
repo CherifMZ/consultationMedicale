@@ -30,7 +30,6 @@ class ProfilMedecinActivity : AppCompatActivity() {
         if(photo!=null){
             Glide.with(this).load(url+ "/images/"+photo).into(doctorPhoto)
         }
-
         rendezVous.setOnClickListener {
             val myIntent = Intent(this, PriseRdvActivity::class.java)
             myIntent.putExtra("idMM",id)
@@ -42,6 +41,5 @@ class ProfilMedecinActivity : AppCompatActivity() {
             myIntent.putExtra("idMC",id)
             startActivity(myIntent)
         }
-
     }
 }

@@ -9,8 +9,6 @@ import com.example.consultation.constant.sharedPrefFile
 import com.example.consultation.data.data.api.RetrofitService
 import com.example.consultation.data.data.models.AuthBody
 import com.example.consultation.data.data.models.AuthResponse
-import com.example.consultation.ui.view.activity.AffichageMedecinActivity
-import com.example.consultation.ui.view.activity.MedecinActivity
 import com.example.consultation.ui.view.activity.PatientMainActivity
 import retrofit2.Call
 import retrofit2.Callback

@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_app_icon_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.Consultation">
-        <activity android:name=".ui.view.activity.PatientMainActivity"></activity>
+        <activity android:name=".ui.view.activity.PatientMainActivity">
+            android:screenOrientation="portrait"
+        </activity>
         <activity android:name=".ui.view.activity.AffichageTreatmentActivity">
             android:screenOrientation="portrait"
         </activity>
@@ -37,6 +39,15 @@
             android:screenOrientation="portrait"
         </activity>
         <activity android:name=".ui.view.activity.AffichageMedecinActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.MedecinRdvActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.AccueilActivity" >
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.PatientRdvActivity" >
             android:screenOrientation="portrait"
         </activity>
         <activity android:name=".ui.view.activity.AuthentificationActivity">

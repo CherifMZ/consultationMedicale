@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.consultation.R
 import com.example.consultation.constant.sharedPrefFile
-import com.example.consultation.ui.view.activity.AffichageMedecinActivity
 import com.example.consultation.ui.view.activity.MedecinActivity
 import com.example.consultation.ui.view.activity.PatientMainActivity
 import kotlinx.android.synthetic.main.fragment_authentification.*

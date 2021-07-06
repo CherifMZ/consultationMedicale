@@ -42,8 +42,9 @@ class MedecinActivity : AppCompatActivity() {
             }
 
             val myIntent = Intent(this, AuthentificationActivity::class.java)
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(myIntent)
-            finish()
         }
     }
 
