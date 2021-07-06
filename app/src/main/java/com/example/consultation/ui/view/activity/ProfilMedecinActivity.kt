@@ -31,6 +31,10 @@ class ProfilMedecinActivity : AppCompatActivity() {
             Glide.with(this).load(url+ "/images/"+photo).into(doctorPhoto)
         }
 
+        rendezVous.setOnClickListener(){
+            val intent = Intent(this,MedecinRdvActivity::class.java)
+            startActivity(intent)
+        }
 
 
 

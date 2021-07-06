@@ -15,6 +15,9 @@ interface Endpoint {
     @GET("/medecin/{id}")
     fun getMedecin(@Path("id") id:Int):Call<Medecin>
 
+    @GET("/patient/{id}")
+    fun getPatient(@Path("id") id:Int):Call<Patient>
+
     @POST("/auth/patient")
     fun authPatient(@Body authBody: AuthBody) : Call<AuthResponse>
 
@@ -26,4 +29,7 @@ interface Endpoint {
 
     @GET("/rendezVous/patient/{id}")
     fun getPatientRdv(@Path("id") id:Int) : Call<List<RDVResponse>>
+
+    @GET("/rendezVous/medecin/{id}/encours")
+    fun getMedecinRdv(@Path("id") id:Int) : Call<List<RDVResponse>>
 }
