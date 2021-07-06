@@ -4,7 +4,9 @@
     <string name="rendez_vous">Prise Rendez vous</string>
     <string name="specialite">Spécialité: </string>
     <string name="numero">Numero: </string>
-    <string name="experience">Experience(ans):  </string>
+    <string name="experience">Experience(ans): </string>
+    <string name="calendar">Heure de travail  </string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

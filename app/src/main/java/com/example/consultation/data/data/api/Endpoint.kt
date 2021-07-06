@@ -15,6 +15,10 @@ interface Endpoint {
     @GET("/medecin/{id}")
     fun getMedecin(@Path("id") id:Int):Call<Medecin>
 
+    @GET("/medecin/{id}/calendar")
+    fun getMedecinCalendar(@Path("id") id:Int):Call<List<HeureTravailResponse>>
+
+
     @GET("/patient/{id}")
     fun getPatient(@Path("id") id:Int):Call<Patient>
 

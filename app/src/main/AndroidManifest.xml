@@ -44,10 +44,10 @@
         <activity android:name=".ui.view.activity.MedecinRdvActivity">
             android:screenOrientation="portrait"
         </activity>
-        <activity android:name=".ui.view.activity.AccueilActivity" >
+        <activity android:name=".ui.view.activity.PatientRdvActivity" >
             android:screenOrientation="portrait"
         </activity>
-        <activity android:name=".ui.view.activity.PatientRdvActivity" >
+        <activity android:name=".ui.view.activity.CalendarActivity">
             android:screenOrientation="portrait"
         </activity>
         <activity android:name=".ui.view.activity.AuthentificationActivity">
