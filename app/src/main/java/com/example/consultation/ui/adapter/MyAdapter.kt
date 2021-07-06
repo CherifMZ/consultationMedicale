@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.consultation.R
@@ -31,7 +30,8 @@ class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Ada
         holder.numero.text = "tel: "+data[position].numero
         holder.specialite.text = data[position].specialite
 
-        Glide.with(context).load(url+ "images/" +data[position].photo).into(holder.image)
+
+        Glide.with(context).load(url+ "/images/" +data[position].photo).into(holder.image)
         holder.numero.setOnClickListener() {
 
             val uri = Uri.parse("tel:" +data[position].numero)
@@ -56,6 +56,7 @@ class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Ada
             intent.putExtra("numero",data[position].numero)
             intent.putExtra("specialite",data[position].specialite)
             intent.putExtra("experience",data[position].experience)
+            intent.putExtra("idMedecin",data[position].idMedecin)
 
 
             context.startActivity(intent)

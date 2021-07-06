@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Consultation">
+        <activity android:name=".ui.view.activity.AccueilActivity"></activity>
+        <activity android:name=".ui.view.activity.PatientRdvActivity" />
         <activity android:name=".ui.view.activity.PriseRdvActivity" />
         <activity android:name=".ui.view.activity.MainActivity" />
-        <activity android:name=".ui.view.activity.ProfilMedecinActivity"/>
+        <activity android:name=".ui.view.activity.ProfilMedecinActivity" />
         <activity android:name=".ui.view.activity.MedecinActivity" />
         <activity android:name=".ui.view.activity.AffichageMedecinActivity" />
         <activity android:name=".ui.view.activity.AuthentificationActivity">

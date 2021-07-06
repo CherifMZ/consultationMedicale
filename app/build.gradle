@@ -2,9 +2,15 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
+
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 

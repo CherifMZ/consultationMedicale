@@ -9,6 +9,7 @@ import com.example.consultation.constant.sharedPrefFile
 import com.example.consultation.data.data.api.RetrofitService
 import com.example.consultation.data.data.models.AuthBody
 import com.example.consultation.data.data.models.AuthResponse
+import com.example.consultation.ui.view.activity.AccueilActivity
 import com.example.consultation.ui.view.activity.AffichageMedecinActivity
 import com.example.consultation.ui.view.activity.MedecinActivity
 import retrofit2.Call
@@ -56,7 +57,7 @@ class AuthPatientRepository {
                         }
 
                         Toast.makeText(context, "Accès autorisé", Toast.LENGTH_SHORT).show()
-                        val myIntent = Intent(context, AffichageMedecinActivity::class.java)
+                        val myIntent = Intent(context, AccueilActivity::class.java)
                         context.startActivity(myIntent)
                         (context as Activity).finish()
                     }

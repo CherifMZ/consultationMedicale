@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.consultation.R
 import com.example.consultation.constant.sharedPrefFile
+import com.example.consultation.ui.view.activity.AccueilActivity
 import com.example.consultation.ui.view.activity.AffichageMedecinActivity
 import com.example.consultation.ui.view.activity.MedecinActivity
 import kotlinx.android.synthetic.main.fragment_authentification.*
@@ -51,7 +52,7 @@ class AuthentificationFragment : Fragment() {
             (context as Activity).finish()
         } else if ((sharedPref.getBoolean("connected", false))
                 && (sharedPref.getString("userRole", "default").equals("patient"))) {
-            val intent= Intent(requireContext(), AffichageMedecinActivity::class.java)
+            val intent= Intent(requireContext(), AccueilActivity::class.java)
             startActivity(intent)
             (context as Activity).finish()
         }

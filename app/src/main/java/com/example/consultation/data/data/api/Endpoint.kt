@@ -5,11 +5,15 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface Endpoint {
 
     @GET("/Medecin")
     fun getAllMedecins():Call<List<Medecin>>
+
+    @GET("/medecin/{id}")
+    fun getMedecin(@Path("id") id:Int):Call<Medecin>
 
     @POST("/auth/patient")
     fun authPatient(@Body authBody: AuthBody) : Call<AuthResponse>
@@ -19,4 +23,7 @@ interface Endpoint {
 
     @POST("/rendezVous")
     fun addRDV(@Body addRDVBody: RDVBody) : Call<RDVResponse>
+
+    @GET("/rendezVous/patient/{id}")
+    fun getPatientRdv(@Path("id") id:Int) : Call<List<RDVResponse>>
 }
