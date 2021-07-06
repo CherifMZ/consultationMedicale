@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Se connecter"
-        android:backgroundTint="#FFCB00"
+        android:backgroundTint="@color/primary"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"

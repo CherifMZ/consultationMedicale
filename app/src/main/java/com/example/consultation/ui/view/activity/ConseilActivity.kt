@@ -7,10 +7,15 @@ import android.widget.Toast
 import androidx.work.*
 import com.example.consultation.R
 import com.example.consultation.constant.sharedPrefFile
+import com.example.consultation.data.data.api.RetrofitService
 import com.example.consultation.data.data.models.Conseil
+import com.example.consultation.data.data.models.RetourConseil
 import com.example.consultation.roomDao.RoomService
 import com.example.consultation.service.SyncService
 import kotlinx.android.synthetic.main.activity_conseil.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ConseilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +31,7 @@ class ConseilActivity : AppCompatActivity() {
             val conseil = Conseil(idPatient?.toInt()!!, idMedecin, message)
             RoomService.context = this
             RoomService.appDataBase.getConseilDao().addConseil(conseil)
+            Toast.makeText(this@ConseilActivity,conseil.conseil, Toast.LENGTH_SHORT).show()
             scheduleSycn()
         }
     }

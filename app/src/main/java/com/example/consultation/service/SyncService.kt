@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.work.ListenableWorker
 import androidx.work.WorkerParameters
@@ -13,6 +14,7 @@ import com.example.consultation.constant.sharedPrefFile
 import com.example.consultation.data.data.api.RetrofitService
 import com.example.consultation.data.data.models.AuthResponse
 import com.example.consultation.data.data.models.Conseil
+import com.example.consultation.data.data.models.RetourConseil
 import com.example.consultation.data.data.models.TreatmentResponse
 import com.example.consultation.roomDao.RoomService
 import com.example.consultation.roomDao.RoomService.context
@@ -30,41 +32,33 @@ class SyncService(val ctx: Context, val workParamters: WorkerParameters):
     lateinit var  future: SettableFuture<Result>
 
     override fun startWork(): ListenableFuture<Result> {
-
         future = SettableFuture.create()
         val conseil = RoomService.appDataBase.getConseilDao().getConseilToSynchronize()
         addConseil(conseil.get(0))
+        Log.d("contenu",conseil.get(0).conseil)
         return future
     }
 
     private fun addConseil(conseil: Conseil) {
         val call = RetrofitService.endpoint.demandeConseil(conseil)
+        call.enqueue(object:Callback<RetourConseil>{
+            override fun onFailure(call: Call<RetourConseil>?, t: Throwable?) {
+                future.set(Result.retry())
+            }
 
-        call.enqueue(object : Callback<String> {
-
-            override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
-            ) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(context, "Erreur", Toast.LENGTH_SHORT).show()
+            override fun onResponse(call: Call<RetourConseil>?, response: Response<RetourConseil>?) {
+                if(response?.isSuccessful!!){
+                    conseil.isSynchronized=1;
+                    RoomService.appDataBase.getConseilDao().updateConseil(conseil)
+                    future.set(Result.success())
+                }
+                else{
                     future.set(Result.retry())
-                } else {
-                    val resp = response.body()
-                    if (resp != null) {
-                        RoomService.context = context
-                        conseil.isSynchronized=1;
-                        RoomService.appDataBase.getConseilDao().updateConseil(conseil)
-                        future.set(Result.success())
-                    }
-                    Toast.makeText(context, "Ajouté", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Toast.makeText(context, "Erreur coté serveur", Toast.LENGTH_SHORT).show()
-                future.set(Result.retry())
-            }
+
         })
+
     }
 }

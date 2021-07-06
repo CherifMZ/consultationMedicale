@@ -35,7 +35,7 @@ interface Endpoint {
     fun getRDV(@Path("id") id: Int): Call<RDVResponse>
 
     @POST("/conseil")
-    fun demandeConseil(@Body info: Conseil):Call<String>
+    fun demandeConseil(@Body conseil: Conseil):Call<RetourConseil>
 
     @GET("/traitement/{id}")
     fun getTreatment(@Path("id") id: Int): Call<List<TreatmentResponse>>
