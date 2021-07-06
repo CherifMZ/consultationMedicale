@@ -29,6 +29,9 @@ class PriseRdvActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prise_rdv)
 
+        //val mIntent = intent //MM ? why 2 M
+        val idMedecin= intent.getIntExtra("idMM", 0)
+
         var pico = Pico(this, null, Type.TIME)
         pico.setPicoListener { calendar -> // Getting your time in 24 hour format
             val hour = calendar[Calendar.HOUR_OF_DAY]
@@ -46,7 +49,7 @@ class PriseRdvActivity : AppCompatActivity() {
                 heureEstimee = hour.toString()+":"+minEstime.toShort()+":"+sec.toString()
             }
 
-            heureChoisie.append("Heure choisie : "+Pico.formatTime(calendar)+"\n")
+            heureChoisie.append("Heure choisie : " + Pico.formatTime(calendar) + "\n")
         }
         pico.show()
 
@@ -57,35 +60,32 @@ class PriseRdvActivity : AppCompatActivity() {
             val day = calendar[Calendar.DAY_OF_MONTH]
 
             date = year.toString()+"-"+month.toShort()+"-"+day.toString()
-            heureChoisie.append("Date choisie : "+Pico.formatDate(calendar)+"\n")
+            heureChoisie.append("Date choisie : " + Pico.formatDate(calendar) + "\n")
         }
         pico.show()
 
-        val multiFormatWriter = MultiFormatWriter()
+        val sharedPref = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val idP = sharedPref.getString("patientID", "default")
 
         buttonRDV.setOnClickListener {
 
-            val sharedPref = getSharedPreferences(
-                sharedPrefFile, Context.MODE_PRIVATE
-            )
-
             val add = AddRdvRepository.Companion
-            val idP = sharedPref.getString("patientID", "default")
-            add.addRDV(this, 1, idP?.toInt()!!,
-                date, time, heureEstimee)
+            add.addRDV(this, idMedecin, idP?.toInt()!!,
+                    date, time, heureEstimee)
 
-            sharedPref.getInt("idRDV", 0)
+            Thread.sleep(3000)
+            val multiFormatWriter = MultiFormatWriter()
             try {
                 val bitMatrix = multiFormatWriter.encode(
-                    sharedPref.getInt("idRDV", 0).toString(),
-                    BarcodeFormat.QR_CODE,
-                    500,
-                    500
+                    (sharedPref.getInt("idRDV", 0)+1).toString(),
+                        BarcodeFormat.QR_CODE,
+                        500,
+                        500
                 )
                 val barcodeEncoder = BarcodeEncoder()
                 val bitmap = barcodeEncoder.createBitmap(bitMatrix)
                 imageview.setImageBitmap(bitmap)
-                val uri = saveImage(bitmap, "RendezVous")
+                val uri = saveImage(bitmap, date + time)
                 toast("saved : $uri")
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -97,7 +97,7 @@ class PriseRdvActivity : AppCompatActivity() {
                     sharedPrefFile, Context.MODE_PRIVATE
             )
             with(sharedPref.edit()) {
-                this.putBoolean("connected",false)
+                this.putBoolean("connected", false)
                 this.apply()
             }
 
@@ -114,10 +114,10 @@ class PriseRdvActivity : AppCompatActivity() {
     fun saveImage(bitmap: Bitmap, title: String):Uri{
         // Save image to gallery
         val savedImageURL = MediaStore.Images.Media.insertImage(
-            contentResolver,
-            bitmap,
-            title,
-            "Image of $title"
+                contentResolver,
+                bitmap,
+                title,
+                "Image of $title"
         )
         // Parse the gallery image url to uri
         return Uri.parse(savedImageURL)

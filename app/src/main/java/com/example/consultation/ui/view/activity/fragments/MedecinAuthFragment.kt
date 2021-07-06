@@ -28,8 +28,6 @@ class MedecinAuthFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        start()
-
         buttonConnect.setOnClickListener {
             val numero = editTextNumber.text.toString()
             val motdepasse = editTextTextPassword.text.toString()
@@ -38,19 +36,6 @@ class MedecinAuthFragment : Fragment() {
             auth.authMedecin(requireContext(), numero, motdepasse)
         }
 
-    }
-
-    fun start() {
-        val sharedPref = requireContext().getSharedPreferences(
-            sharedPrefFile, Context.MODE_PRIVATE
-        )
-        val connected = sharedPref.getBoolean("connected", false)
-
-        if(connected){
-            val intent= Intent(requireContext(), MedecinActivity::class.java)
-            startActivity(intent)
-            (context as Activity).finish()
-        }
     }
 
 }

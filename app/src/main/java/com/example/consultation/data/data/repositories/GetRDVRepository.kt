@@ -10,40 +10,37 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AddRdvRepository {
+class GetRDVRepository {
     companion object {
-        fun addRDV(
-            context: Context,
-            idMedecin : Int,
-            idPatient : Int,
-            dateRdv : String,
-            heureRdv : String,
-            heureFinEstimee : String
+        fun getRDV(
+                context: Context,
+                id : Int
         ) {
-            val rdvBody = RDVBody(idMedecin, idPatient, dateRdv, heureRdv, heureFinEstimee)
-            val call = RetrofitService.endpoint.addRDV(rdvBody)
+            val call =  RetrofitService.endpoint.getRDV(id)
+            val sharedPref = context.getSharedPreferences(
+                    sharedPrefFile, Context.MODE_PRIVATE
+            )
 
             call.enqueue(object : Callback<RDVResponse> {
 
                 override fun onResponse(
-                    call: Call<RDVResponse>,
-                    response: Response<RDVResponse>
+                        call: Call<RDVResponse>,
+                        response: Response<RDVResponse>
                 ) {
                     if (!response.isSuccessful()) {
-                        Toast.makeText(context, "Choisissez une autre date/heure", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Can't get data", Toast.LENGTH_SHORT).show()
                     } else {
                         val resp = response.body()
 
                         if (resp != null) {
-
-                            val sharedPref = context.getSharedPreferences(
-                                sharedPrefFile, Context.MODE_PRIVATE)
                             with(sharedPref?.edit()) {
-                                this?.putInt("idRDV", resp.idRdv)
+                                this?.putString("date", resp.dateRdv)
+                                this?.putString("heure", resp.heureRdv)
+                                this?.putString("heureEst", resp.heureFinEstimee)
+                                this?.putInt("getRDVPatientId", resp.idPatient)
                                 this?.apply()
                             }
                         }
-                        Toast.makeText(context, "Votre Rendez-Vous a bien été enregistré", Toast.LENGTH_SHORT).show()
                     }
                 }
 

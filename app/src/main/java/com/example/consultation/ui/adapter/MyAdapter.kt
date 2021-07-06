@@ -50,13 +50,13 @@ class MyAdapter(val context: Context, var data: List<Medecin>): RecyclerView.Ada
 
         holder.itemView.setOnClickListener(){
             val intent = Intent(context,ProfilMedecinActivity::class.java)
+            intent.putExtra("idM", data[position].idMedecin)
             intent.putExtra("photo",data[position].photo)
             intent.putExtra("nom",data[position].nom)
             intent.putExtra("prenom",data[position].prenom)
             intent.putExtra("numero",data[position].numero)
             intent.putExtra("specialite",data[position].specialite)
             intent.putExtra("experience",data[position].experience)
-
 
             context.startActivity(intent)
         }

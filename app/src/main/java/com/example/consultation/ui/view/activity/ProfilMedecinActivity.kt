@@ -1,5 +1,6 @@
 package com.example.consultation.ui.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -18,7 +19,7 @@ class ProfilMedecinActivity : AppCompatActivity() {
         val numero =intent.getSerializableExtra("numero") as String
         val specialite =intent.getSerializableExtra("specialite") as String
         val experience =intent.getSerializableExtra("experience") as Int
-
+        val id = intent.getSerializableExtra("idM") as Int
 
         textViewNom2.text="Dr. "+nom
         textViewPrenom2.text=prenom
@@ -28,6 +29,18 @@ class ProfilMedecinActivity : AppCompatActivity() {
 
         if(photo!=null){
             Glide.with(this).load(url+ "/images/"+photo).into(doctorPhoto)
+        }
+
+        rendezVous.setOnClickListener {
+            val myIntent = Intent(this, PriseRdvActivity::class.java)
+            myIntent.putExtra("idMM",id)
+            startActivity(myIntent)
+        }
+
+        conseil.setOnClickListener {
+            val myIntent = Intent(this, ConseilActivity::class.java)
+            myIntent.putExtra("idMC",id)
+            startActivity(myIntent)
         }
 
     }

@@ -14,6 +14,7 @@ import com.example.consultation.data.data.repositories.AuthMedecinRepository
 import com.example.consultation.data.data.repositories.AuthPatientRepository
 import com.example.consultation.ui.view.activity.AffichageMedecinActivity
 import com.example.consultation.ui.view.activity.MedecinActivity
+import com.example.consultation.ui.view.activity.PatientMainActivity
 import kotlinx.android.synthetic.main.fragment_patient_auth.*
 
 class PatientAuthFragment : Fragment() {
@@ -29,8 +30,6 @@ class PatientAuthFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        start()
-
         buttonConnect.setOnClickListener {
             val numero = editTextNumber.text.toString()
             val motdepasse = editTextTextPassword.text.toString()
@@ -40,16 +39,4 @@ class PatientAuthFragment : Fragment() {
         }
     }
 
-    fun start() {
-        val sharedPref = requireContext().getSharedPreferences(
-            sharedPrefFile, Context.MODE_PRIVATE
-        )
-        val connected = sharedPref.getBoolean("connected", false)
-
-        if(connected){
-            val intent= Intent(requireContext(), AffichageMedecinActivity::class.java)
-            startActivity(intent)
-            (context as Activity).finish()
-        }
-    }
 }

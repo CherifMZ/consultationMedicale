@@ -13,6 +13,7 @@ import com.example.consultation.R
 import com.example.consultation.constant.sharedPrefFile
 import com.example.consultation.ui.view.activity.AffichageMedecinActivity
 import com.example.consultation.ui.view.activity.MedecinActivity
+import com.example.consultation.ui.view.activity.PatientMainActivity
 import kotlinx.android.synthetic.main.fragment_authentification.*
 
 class AuthentificationFragment : Fragment() {
@@ -40,9 +41,7 @@ class AuthentificationFragment : Fragment() {
     }
 
     fun start() {
-        val sharedPref = requireContext().getSharedPreferences(
-                sharedPrefFile, Context.MODE_PRIVATE
-        )
+        val sharedPref = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
 
         if((sharedPref.getBoolean("connected", false))
                 && (sharedPref.getString("userRole", "default").equals("medecin"))){
@@ -51,7 +50,7 @@ class AuthentificationFragment : Fragment() {
             (context as Activity).finish()
         } else if ((sharedPref.getBoolean("connected", false))
                 && (sharedPref.getString("userRole", "default").equals("patient"))) {
-            val intent= Intent(requireContext(), AffichageMedecinActivity::class.java)
+            val intent= Intent(requireContext(),  PatientMainActivity::class.java)
             startActivity(intent)
             (context as Activity).finish()
         }

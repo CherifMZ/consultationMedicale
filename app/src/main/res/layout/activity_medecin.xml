@@ -10,21 +10,45 @@
         android:id="@+id/buttonScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Scanner un code QR"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#FFCB00"
+        android:text="Scanner un code QR"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/bienvenue" />
 
     <Button
         android:id="@+id/buttonDisconnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Se déconnecter"
+        android:layout_marginTop="80dp"
         android:backgroundTint="#FFCB00"
+        android:text="Se déconnecter"
         app:layout_constraintEnd_toEndOf="@+id/buttonScan"
         app:layout_constraintStart_toStartOf="@+id/buttonScan"
         app:layout_constraintTop_toBottomOf="@+id/buttonScan" />
+
+    <ImageView
+        android:id="@+id/imageMedecin"
+        android:layout_width="226dp"
+        android:layout_height="226dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_doctor" />
+
+    <TextView
+        android:id="@+id/bienvenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bienvenue dans l'espace Médecin"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageMedecin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

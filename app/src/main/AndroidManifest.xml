@@ -4,22 +4,43 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_app_icon_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.Consultation">
-        <activity android:name=".ui.view.activity.PriseRdvActivity" />
-        <activity android:name=".ui.view.activity.MainActivity" />
-        <activity android:name=".ui.view.activity.ProfilMedecinActivity"/>
-        <activity android:name=".ui.view.activity.MedecinActivity" />
-        <activity android:name=".ui.view.activity.AffichageMedecinActivity" />
+        <activity android:name=".ui.view.activity.PatientMainActivity"></activity>
+        <activity android:name=".ui.view.activity.AffichageTreatmentActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.ProfilTreatmentActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.ConseilActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.PriseRdvActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.MainActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.ProfilMedecinActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.MedecinActivity">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity android:name=".ui.view.activity.AffichageMedecinActivity">
+            android:screenOrientation="portrait"
+        </activity>
         <activity android:name=".ui.view.activity.AuthentificationActivity">
+            android:screenOrientation="portrait"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
