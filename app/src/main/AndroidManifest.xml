@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Consultation">
-        <activity android:name=".ui.view.activity.MedecinRdvActivity"></activity>
+        <activity android:name=".ui.view.activity.CalendarActivity"></activity>
+        <activity android:name=".ui.view.activity.MedecinRdvActivity" />
         <activity android:name=".ui.view.activity.AccueilActivity" />
         <activity android:name=".ui.view.activity.PatientRdvActivity" />
         <activity android:name=".ui.view.activity.PriseRdvActivity" />

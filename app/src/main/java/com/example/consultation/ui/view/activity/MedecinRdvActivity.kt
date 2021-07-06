@@ -42,7 +42,7 @@ class MedecinRdvActivity : AppCompatActivity() {
         val cal= RetrofitService.endpoint.getMedecinRdv(id)
         cal.enqueue(object : Callback<List<RDVResponse>> {
             override fun onFailure(call: Call<List<RDVResponse>>?, t: Throwable?) {
-                Toast.makeText(this@MedecinRdvActivity,"Failure in get patient RDV", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MedecinRdvActivity,"Failure in get doctor RDV", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<List<RDVResponse>>?, response: Response<List<RDVResponse>>?) {

@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.example.consultation.R
 import com.example.consultation.constant.url
+import com.example.consultation.data.data.models.HeureTravailResponse
 import kotlinx.android.synthetic.main.activity_profil_medecin.*
 
 class ProfilMedecinActivity : AppCompatActivity() {
@@ -31,10 +32,12 @@ class ProfilMedecinActivity : AppCompatActivity() {
             Glide.with(this).load(url+ "/images/"+photo).into(doctorPhoto)
         }
 
-        rendezVous.setOnClickListener(){
-            val intent = Intent(this,MedecinRdvActivity::class.java)
+        calendar.setOnClickListener(){
+            val intent = Intent(this,CalendarActivity::class.java)
+            intent.putExtra("id",idMedecin)
             startActivity(intent)
         }
+
 
 
 
